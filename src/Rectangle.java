@@ -1,3 +1,6 @@
+/*
+    job - calculate Area and Perimeter
+ */
 public class Rectangle implements Quadrilateral {
     private final double length;
     private final double width;
