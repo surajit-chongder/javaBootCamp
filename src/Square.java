@@ -1,24 +1,15 @@
 /*
     job - calculate Area and Perimeter
  */
-public class Square implements Quadrilateral{
-    private final double side;
-
+public class Square extends Rectangle {
     private Square(double side) {
-        this.side = side;
+        super(side, side);
     }
 
     public static Square create(double side) throws InvalidScaleException {
         if (side <= 0)
-            throw new InvalidScaleException(side);
+            throw new InvalidScaleException();
         return new Square(side);
     }
-    @Override
-    public double calculateArea() {
-        return Math.pow(side, 2);
-    }
-    @Override
-    public double calculatePerimeter() {
-        return 4 * side;
-    }
+
 }

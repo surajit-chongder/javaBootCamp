@@ -19,48 +19,40 @@ public class RectangleTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void rectangle_gives_area_when_length_breadth_are_same(){
+    public void rectangle_gives_area_when_length_breadth_are_same() {
         assertEquals(400, rectangleWithEqualLengthBreadth.calculateArea(), 0);
     }
 
     @Test
-    public void rectangle_gives_area_when_length_half_of_breadth(){
+    public void rectangle_gives_area_when_length_half_of_breadth() {
         assertEquals(2.88, rectangleWithLengthHalfOfBreadth.calculateArea(), 0);
     }
 
     @Test
-    public void rectangle_gives_perimeter_when_length_breadth_are_same(){
+    public void rectangle_gives_perimeter_when_length_breadth_are_same() {
         assertEquals(80, rectangleWithEqualLengthBreadth.calculatePerimeter(), 0);
     }
 
     @Test
-    public void rectangle_gives_perimeter_when_length_half_of_breadth(){
+    public void rectangle_gives_perimeter_when_length_half_of_breadth() {
         assertEquals(7.20, rectangleWithLengthHalfOfBreadth.calculatePerimeter(), 0.1);
     }
+
     @Test
     public void rectangle_throws_error_when_length_and_breadth_is_zero() throws InvalidScaleException {
-        thrown.expectMessage("Expected positive, but length = 0.0, breadth = 0.0 are given");
+        thrown.expectMessage("Expected positive but non positive value given");
         Rectangle.create(0, 0);
     }
 
     @Test
-    public void rectangle_throws_error_when_length_is_zero() throws InvalidScaleException {
-        thrown.expectMessage("Expected positive, but length = 0.0, breadth = 1.0 are given");
-        Rectangle.create(0, 1);
-    }
-    @Test
-    public void rectangle_throws_error_when_breadth_is_zero() throws InvalidScaleException {
-        thrown.expectMessage("Expected positive, but length = 1.0, breadth = 0.0 are given");
-        Rectangle.create(1, 0);
-    }
-    @Test
     public void rectangle_throws_error_when_length_is_negative() throws InvalidScaleException {
-        thrown.expectMessage("Expected positive, but length = -1.0, breadth = 10.0 are given");
+        thrown.expectMessage("Expected positive but non positive value given");
         Rectangle.create(-1, 10);
     }
+
     @Test
     public void rectangle_throws_error_when_breadth_is_negative() throws InvalidScaleException {
-        thrown.expectMessage("Expected positive, but length = 10.0, breadth = -10.0 are given");
+        thrown.expectMessage("Expected positive but non positive value given");
         Rectangle.create(10, -10);
     }
 }
