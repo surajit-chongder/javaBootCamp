@@ -1,35 +1,66 @@
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.*;
 
 public class RectangleTest {
-    Rectangle rectangleWithEqualLengthWidth;
-    Rectangle rectangleWithLengthHalfOfWidth;
+    Rectangle rectangleWithEqualLengthBreadth;
+    Rectangle rectangleWithLengthHalfOfBreadth;
 
     @Before
-    public void setUp() throws Exception {
-        rectangleWithEqualLengthWidth = new Rectangle(20, 20);
-        rectangleWithLengthHalfOfWidth = new Rectangle(1.2, 2.4);
+    public void setUp() throws InvalidScaleException {
+        rectangleWithEqualLengthBreadth = Rectangle.create(20, 20);
+        rectangleWithLengthHalfOfBreadth = Rectangle.create(1.2, 2.4);
+    }
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+    @Test
+    public void rectangle_gives_area_when_length_breadth_are_same(){
+        assertEquals(400, rectangleWithEqualLengthBreadth.calculateArea(), 0);
     }
 
     @Test
-    public void rectangle_gives_area_when_length_width_are_same() throws Exception {
-        assertEquals(400, rectangleWithEqualLengthWidth.calculateArea(), 0);
+    public void rectangle_gives_area_when_length_half_of_breadth(){
+        assertEquals(2.88, rectangleWithLengthHalfOfBreadth.calculateArea(), 0);
     }
 
     @Test
-    public void rectangle_gives_area_when_length_half_of_width() throws Exception {
-        assertEquals(2.88, rectangleWithLengthHalfOfWidth.calculateArea(), 0);
+    public void rectangle_gives_perimeter_when_length_breadth_are_same(){
+        assertEquals(80, rectangleWithEqualLengthBreadth.calculatePerimeter(), 0);
     }
 
     @Test
-    public void rectangle_gives_perimeter_when_length_width_are_same() throws Exception {
-        assertEquals(80, rectangleWithEqualLengthWidth.calculatePerimeter(), 0);
+    public void rectangle_gives_perimeter_when_length_half_of_breadth(){
+        assertEquals(7.20, rectangleWithLengthHalfOfBreadth.calculatePerimeter(), 0.1);
+    }
+    @Test
+    public void rectangle_throws_error_when_length_and_breadth_is_zero() throws InvalidScaleException {
+        thrown.expectMessage("Expected positive, but length = 0.0, breadth = 0.0 are given");
+        Rectangle.create(0, 0);
     }
 
     @Test
-    public void rectangle_gives_perimeter_when_length_half_of_width() throws Exception {
-        assertEquals(7.20, rectangleWithLengthHalfOfWidth.calculatePerimeter(), 0.1);
+    public void rectangle_throws_error_when_length_is_zero() throws InvalidScaleException {
+        thrown.expectMessage("Expected positive, but length = 0.0, breadth = 1.0 are given");
+        Rectangle.create(0, 1);
+    }
+    @Test
+    public void rectangle_throws_error_when_breadth_is_zero() throws InvalidScaleException {
+        thrown.expectMessage("Expected positive, but length = 1.0, breadth = 0.0 are given");
+        Rectangle.create(1, 0);
+    }
+    @Test
+    public void rectangle_throws_error_when_length_is_negative() throws InvalidScaleException {
+        thrown.expectMessage("Expected positive, but length = -1.0, breadth = 10.0 are given");
+        Rectangle.create(-1, 10);
+    }
+    @Test
+    public void rectangle_throws_error_when_breadth_is_negative() throws InvalidScaleException {
+        thrown.expectMessage("Expected positive, but length = 10.0, breadth = -10.0 are given");
+        Rectangle.create(10, -10);
     }
 }
