@@ -1,6 +1,10 @@
 /*
     job - calculate Area and Perimeter
  */
+package shapes;
+
+import exception.InvalidScaleException;
+
 public class Rectangle {
     private final double length;
     private final double breadth;

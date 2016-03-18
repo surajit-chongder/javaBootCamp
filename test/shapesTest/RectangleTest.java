@@ -1,7 +1,11 @@
+package shapesTest;
+
+import exception.InvalidScaleException;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import shapes.Rectangle;
 
 import static org.junit.Assert.*;
 
