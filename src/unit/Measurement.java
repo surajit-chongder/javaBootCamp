@@ -20,21 +20,21 @@ public class Measurement {
     }
 
     public boolean isEqualTo(Measurement other) throws InvalidComparingUnitException {
-        if (this.unit.baseUnit() != other.unit.baseUnit())
+        if (this.unit.getClass() != other.unit.getClass())
             throw new InvalidComparingUnitException();
         Measurement otherInSameUnit = convertToSameUnit(other);
         return this.equals(otherInSameUnit);
     }
 
     public Measurement add(Measurement other) throws InvalidAddingUnitException {
-        if (this.unit.baseUnit() != other.unit.baseUnit())
+        if (this.unit.getClass() != other.unit.getClass())
             throw new InvalidAddingUnitException();
         Measurement otherInSameUnit = convertToSameUnit(other);
         double totalValue = roundTo2Decimals(otherInSameUnit.value + value);
         return new Measurement(totalValue, unit);
     }
 
-    double roundTo2Decimals(double value) {
+    private double roundTo2Decimals(double value) {
         DecimalFormat upToTwoDecimalPosition = new DecimalFormat("###.##");
         return Double.valueOf(upToTwoDecimalPosition.format(value));
     }

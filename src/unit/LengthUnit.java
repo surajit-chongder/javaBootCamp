@@ -14,8 +14,4 @@ public enum  LengthUnit implements Unit{
         return factor;
     }
 
-    @Override
-    public Unit baseUnit() {
-        return MILLIMETER;
-    }
 }

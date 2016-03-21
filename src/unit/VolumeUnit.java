@@ -14,8 +14,4 @@ public enum VolumeUnit implements Unit {
         return factor;
     }
 
-    @Override
-    public Unit baseUnit() {
-        return LITRE;
-    }
 }
